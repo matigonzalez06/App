@@ -39,7 +39,11 @@ pipeline {
         androidLint pattern: '**/lint-results-*.xml'
       }
     }
-
+    stage('Deploy') {
+      when {
+        // Only execute this stage when building from the `beta` branch
+        branch 'qa'
+      }
 
 
       post {
@@ -48,6 +52,7 @@ pipeline {
           mail to: 'matias.gonzalez@estudiantes.utec.edu.uy', subject: 'Nueva versión desponible', body: 'Pruébala!'
         }
       }
+
     }
   }
   post {
@@ -56,3 +61,4 @@ pipeline {
       mail to: 'matias.gonzalez@estudiantes.utec.edu.uy', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
     }
   }
+}
