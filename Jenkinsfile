@@ -39,11 +39,7 @@ pipeline {
         androidLint pattern: '**/lint-results-*.xml'
       }
     }
-    stage('Deploy') {
-      when {
-        // Only execute this stage when building from the `beta` branch
-        branch 'qa'
-      }
+
 
 
       post {
@@ -54,7 +50,7 @@ pipeline {
       }
 
     }
-  }
+
   post {
     failure {
       // Notify developer team of the failure
