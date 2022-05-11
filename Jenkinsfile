@@ -41,6 +41,7 @@ pipeline {
     }
 
 
+
       post {
         success {
           // Notify if the upload succeeded
@@ -55,4 +56,3 @@ pipeline {
       mail to: 'matias.gonzalez@estudiantes.utec.edu.uy', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
     }
   }
-}
